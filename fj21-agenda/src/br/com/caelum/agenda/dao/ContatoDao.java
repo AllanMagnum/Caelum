@@ -9,19 +9,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.caelum.agenda.ConnectionFactory;
 import br.com.caelum.agenda.modelo.Contato;
 
 public class ContatoDao {
 	private Connection connection;
-
-	public ContatoDao() {
-		try {
-			this.connection = new ConnectionFactory().getConnection();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 
 	public ContatoDao(Connection connection) {
 		this.connection = connection;
@@ -72,6 +63,39 @@ public class ContatoDao {
 			stmt.close();
 
 			return contatos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Contato buscarPorId(Contato contato) {
+		try {
+		
+			PreparedStatement stmt = this.connection.prepareStatement("select * from contato where id = ?");
+			stmt.setLong(1, contato.getId());	
+			
+			ResultSet rs = stmt.executeQuery();
+
+			Contato contato1 = new Contato();
+			
+			while(rs.next()) {
+				//popula o objeto contato
+				contato1.setId(rs.getLong("id"));
+				contato1.setNome(rs.getString("nome"));
+				contato1.setEmail(rs.getString("email"));
+				contato1.setEndereco(rs.getString("endereco"));
+
+				//popula a data de nascimento do contato, fazendo a conversao
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataNascimento"));
+				contato1.setDataNascimento(data);
+			}
+
+			rs.close();
+			stmt.close();
+
+			return contato1;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

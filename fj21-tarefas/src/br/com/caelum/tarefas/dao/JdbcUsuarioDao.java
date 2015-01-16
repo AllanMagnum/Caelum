@@ -27,7 +27,7 @@ public class JdbcUsuarioDao {
 
 		try {
 			PreparedStatement stmt = this.connection
-					.prepareStatement("select * from usuarios where login = ? and senha = ?");
+					.prepareStatement("select * from usuario where login = ? and senha = ?");
 			stmt.setString(1, usuario.getLogin());
 			stmt.setString(2, usuario.getSenha());
 			ResultSet rs = stmt.executeQuery();

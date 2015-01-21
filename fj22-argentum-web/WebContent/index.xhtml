@@ -10,22 +10,25 @@
 </h:head>
 
 <h:body>
-	<p:dataTable rows="15" paginator="true" var="negociacao" value="#{negociacaoMB.negociacoes}">
-		<p:column headerText="Preço"> 
-			<h:outputText value="#{negociacao.preco}"></h:outputText>
-		</p:column>
-		<p:column headerText="Quantidade"> 
-			<h:outputText value="#{negociacao.quantidade}"></h:outputText>
-		</p:column>
-		<p:column headerText="Volume"> 
-			<h:outputText value="#{negociacao.volume}"></h:outputText>
-		</p:column>
-		<p:column headerText="Data"> 
-			<h:outputText value="#{negociacao.data.time}">
+	<p:lineChart value="#{negociacaoMB.modeloGrafico}" legendPosition="w" title="Indicadores"></p:lineChart>
+	<h:form>
+		<p:dataTable rows="15" paginator="true" var="negociacao" value="#{negociacaoMB.negociacoes}">
+			<p:column headerText="Preço" sortBy="#{negociacao.preco}"> 
+				<h:outputText value="#{negociacao.preco}"></h:outputText>
+			</p:column>
+			<p:column headerText="Quantidade"> 
+				<h:outputText value="#{negociacao.quantidade}"></h:outputText>
+			</p:column>
+			<p:column headerText="Volume"> 
+				<h:outputText value="#{negociacao.volume}"></h:outputText>
+			</p:column>
+			<p:column headerText="Data"> 
+				<h:outputText value="#{negociacao.data.time}">
 				<f:convertDateTime pattern="dd/MM/yyyu"></f:convertDateTime>
-			</h:outputText>
-		</p:column>
+				</h:outputText>
+			</p:column>
 	</p:dataTable>
+	</h:form>
 </h:body>
 
 </html>

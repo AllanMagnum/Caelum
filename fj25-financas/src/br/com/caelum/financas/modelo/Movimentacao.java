@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -61,5 +63,12 @@ public class Movimentacao {
 	}
 	public void setTipoMovimentacao(EnumTipoMovimentacao tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
+	}
+	
+	@PrePersist
+	@PreUpdate
+	public void preAltera(){
+		System.out.println("Atualizando a data da movimentacao");
+		this.setData(Calendar.getInstance());
 	}
 }

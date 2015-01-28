@@ -1,8 +1,12 @@
 package br.com.caelum.financas.mb;
 
 import java.util.List;
+
+import br.com.caelum.financas.dao.MovimentacaoDao;
 import br.com.caelum.financas.modelo.Movimentacao;
+
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -11,11 +15,12 @@ public class MovimentacoesPorTitularBean {
 
 	private List<Movimentacao> movimentacoes;
 	private String titular;
-	
+	@Inject
+	private MovimentacaoDao movimentacaoDao;	
 	
 
 	public void lista() {
-		System.out.println("Buscando as movimentacoes pelo titular da conta " + this.titular);
+		this.movimentacoes = movimentacaoDao.buscaTodasMovimentacoesDaConta(titular);
 
 	}
 

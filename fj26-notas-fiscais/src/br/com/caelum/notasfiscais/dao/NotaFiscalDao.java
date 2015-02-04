@@ -2,10 +2,13 @@ package br.com.caelum.notasfiscais.dao;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
+import br.com.caelum.notasfiscais.tx.Transactional;
 
 public class NotaFiscalDao implements Serializable {
 	
@@ -14,10 +17,9 @@ public class NotaFiscalDao implements Serializable {
 	@Inject
 	private EntityManager manager;
 
+	@Transactional
 	public void adiciona(NotaFiscal nota) {
-		manager.getTransaction().begin();
 		manager.persist(nota);
-		manager.getTransaction().commit();
 	}
 	
 	public List<NotaFiscal> listaTodos() {

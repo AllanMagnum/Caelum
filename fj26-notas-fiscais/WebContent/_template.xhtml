@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>
+		<ui:insert name="titulo">
+			Sistema de Notas Fiscais - UberDist
+		</ui:insert>
+	</title>
+	
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+
+<h:body>
+	<div id="cabecalho">
+		<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany"></h:graphicImage>
+		<div id="usuarioLogado">
+			<h:form rendered="#{not empty usuarioLogadoBean.usuario}">
+				Logado como: #{usuarioLogadoBean.usuario.login}
+				<h:commandLink value="[Sair]" action="#{loginBean.logout}" />
+			</h:form>
+		</div>
+	</div>
+	
+	<div id="conteudo">
+		<ui:insert name="corpo"></ui:insert>
+	</div>
+	
+	<div id="rodape">
+		Copyright 2013.
+		Todos os direitos reservados a Allan Magnum.
+	</div>
+</h:body>
+
+</html>

@@ -2,19 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Sistema de Notas Fiscais - Uberdist</title>
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body>
-	<div id="cabecalho">
-		<h:graphicImage library="imagens" name="logo-uber.png"
-			id="logoCompany">
-		</h:graphicImage>
-	</div>
-	<div id="conteudo">
+<ui:composition template="_template.xhtml">
+	<ui:define name="corpo">
+
 		<h2>Login no sistema</h2>
 		<h:form id="formLogin">
 
@@ -28,8 +21,6 @@
 				value="Efetuar Login"></h:commandButton>
 
 		</h:form>
-	</div>
-	<div id="rodape">Copyright 2013. Todos os Direitos reservados a
-		Allan Magnum.</div>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>

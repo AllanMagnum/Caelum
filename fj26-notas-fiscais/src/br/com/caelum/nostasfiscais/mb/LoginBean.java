@@ -41,4 +41,9 @@ public class LoginBean implements Serializable{
 			return "login";
 		}
 	}
+	
+	public String logout(){
+		usuarioLogado.deslogar();
+		return "login";
+	}
 }

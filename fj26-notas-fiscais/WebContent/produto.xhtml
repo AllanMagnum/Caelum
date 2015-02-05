@@ -14,6 +14,7 @@
 	<ui:define name="corpo">
 
 		<h:form id="formPrincipal">
+			<h:messages styleClass="erros"></h:messages>
 			<h2>
 				<h:outputText value="Novo Produto"
 					rendered="#{empty produtoBean.produto.id}"/>
@@ -24,14 +25,16 @@
 				<legend>Dados do Produto</legend>
 				<h:inputHidden value="#{produtoBean.produto.id}"></h:inputHidden>
 				<h:outputLabel value="Nome:" for="nome" />
-				<h:inputText id="nome" value="#{produtoBean.produto.nome}"></h:inputText>
+				<h:inputText id="nome" value="#{produtoBean.produto.nome}" validator="#{produtoBean.comecaComMaiuscula}"></h:inputText>
 
 				<h:outputLabel value="Descrição:" for="descricao" />
 				<h:inputTextarea id="descricao"
 					value="#{produtoBean.produto.descricao}" />
 
 				<h:outputLabel value="Preço:" for="preco" />
-				<h:inputText id="preco" value="#{produtoBean.produto.preco}"></h:inputText>
+				<h:inputText id="preco" value="#{produtoBean.produto.preco}" required="true" requiredMessage="Preco obrigatorio" validatorMessage="O valor minimo e 0,50">
+					<f:validateDoubleRange minimum="0.50"/>
+				</h:inputText>
 
 				<h:commandButton value="Gravar" action="#{produtoBean.grava}"
 					rendered="#{empty produtoBean.produto.id}">
@@ -39,7 +42,7 @@
 				</h:commandButton>
 
 				<h:commandButton value="Cancelar" action="#{produtoBean.cancela}"
-					rendered="#{not empty produtoBean.produto.id}"></h:commandButton>
+					rendered="#{not empty produtoBean.produto.id}" immediate="true"></h:commandButton>
 
 				<h:commandButton value="Alterar" action="#{produtoBean.grava}"
 					rendered="#{not empty produtoBean.produto.id}">

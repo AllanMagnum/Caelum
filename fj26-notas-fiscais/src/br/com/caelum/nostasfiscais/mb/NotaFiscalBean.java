@@ -1,18 +1,15 @@
 package br.com.caelum.nostasfiscais.mb;
 
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.com.caelum.notasfiscais.dao.NotaFiscalDao;
 import br.com.caelum.notasfiscais.dao.ProdutoDao;
 import br.com.caelum.notasfiscais.modelo.Item;
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
 import br.com.caelum.notasfiscais.modelo.Produto;
 import br.com.caelum.notasfiscais.tx.Transactional;
+import br.com.caelum.notasfiscais.tx.ViewModel;
 
-@Named
-@ViewScoped
+@ViewModel
 public class NotaFiscalBean {
 
 	private NotaFiscal notaFiscal = new NotaFiscal();

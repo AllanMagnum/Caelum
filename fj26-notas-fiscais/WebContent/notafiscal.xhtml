@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/_template.xhtml">
 	<ui:define name="titulo">
@@ -13,15 +14,18 @@
 	<ui:define name="corpo">
 
 		<h:form>
+			<h:messages styleClass="error"></h:messages>
 			<fieldset> 
 				<legend>Dados da nota</legend> 
 				<h:outputLabel value="CNPJ:" for="cnpj" /> 
-				<h:inputText id="cnpj" value="#{notaFiscalBean.notaFiscal.cnpj}" /> 
+				<p:inputMask mask="99.999.999/9999-99" value="#{notaFiscalBean.notaFiscal.cnpj}"></p:inputMask>
+<!-- 				<h:inputText id="cnpj" value="#{notaFiscalBean.notaFiscal.cnpj}" />  -->
 				
 				<h:outputLabel value="Data:" for="data" /> 
-				<h:inputText id="data" value="#{notaFiscalBean.notaFiscal.data.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
-				</h:inputText> 
+				<p:calendar pattern="dd/MM/yyyy" value="#{notaFiscalBean.notaFiscal.data.time}"></p:calendar>
+<!-- 				<h:inputText id="data" value="#{notaFiscalBean.notaFiscal.data.time}"> -->
+<!-- 					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" /> -->
+<!-- 				</h:inputText>  -->
 			</fieldset>
 			
 			<fieldset> 
@@ -31,7 +35,8 @@
 					<f:selectItems value="#{produtoBean.produtos}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.id}"/>
 				</h:selectOneMenu>
 				<h:outputLabel value="Quantidade:"/>
-				<h:inputText value="#{notaFiscalBean.item.quantidade}"/>
+				<p:inputMask mask="9?999999999999999" value="#{notaFiscalBean.item.quantidade}"></p:inputMask>
+<!-- 				<h:inputText value="#{notaFiscalBean.item.quantidade}"/> -->
 				<h:commandButton value="Guardar Item" action="#{notaFiscalBean.guardaItem}"/>
 			</fieldset>
 			

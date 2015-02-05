@@ -17,7 +17,6 @@ public class NotaFiscalDao implements Serializable {
 	@Inject
 	private EntityManager manager;
 
-	@Transactional
 	public void adiciona(NotaFiscal nota) {
 		manager.persist(nota);
 	}

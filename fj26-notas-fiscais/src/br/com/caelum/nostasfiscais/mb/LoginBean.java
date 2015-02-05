@@ -3,6 +3,7 @@ package br.com.caelum.nostasfiscais.mb;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,6 +22,8 @@ public class LoginBean implements Serializable{
 	private UsuarioDao usuarioDao;
 	@Inject
 	private UsuarioLogadoBean usuarioLogado;
+	@Inject
+	private Event<Usuario> eventoLogin;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -33,8 +36,8 @@ public class LoginBean implements Serializable{
 	public String efetuaLogin(){
 		boolean existe = this.usuarioDao.existe(this.usuario);
 		if(existe){
-			usuarioLogado.logar(this.usuario);
-			return "produto?faces-redirect=true";
+			eventoLogin.fire(this.usuario);
+			return "listanotas?faces-redirect=true";
 		}else{
 			usuarioLogado.deslogar();
 			this.usuario = new Usuario();

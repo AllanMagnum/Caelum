@@ -3,6 +3,10 @@ package br.com.caelum.nostasfiscais.mb;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,8 +43,9 @@ public class ProdutoBean implements Serializable{
 		return this.produtos;
 	}
 	
-	public void cancela(){
+	public String cancela(){
 		this.produto = new Produto();
+		return "produto?faces-redirect=true";
 	}
 
 	public void grava(){
@@ -65,5 +70,13 @@ public class ProdutoBean implements Serializable{
 			this.soma+=produto.getPreco();
 		}
 		return this.soma;
+	}
+	
+	public void comecaComMaiuscula(FacesContext fc, UIComponent component, Object value) throws ValidatorException{
+		String valor = value.toString();
+		
+		if(!valor.matches("[A-Z].*")){
+			throw new ValidatorException(new FacesMessage("Deveria comecar com maiuscula"));
+		}
 	}
 }

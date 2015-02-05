@@ -13,13 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 @Entity
 public class NotaFiscal {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@CNPJ
 	private String cnpj;
 
 	@Temporal(TemporalType.DATE)

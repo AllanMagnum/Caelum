@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>
 		<ui:insert name="titulo">
@@ -26,6 +27,16 @@
 	</div>
 	
 	<div id="conteudo">
+		<h:form rendered="#{not empty usuarioLogadoBean.usuario}">
+		<p:menubar>
+			<p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-document"/>
+			<p:submenu label="NotasFiscais" icon="ui-icon ui-icon-document">
+				<p:menuitem value="Cadastro" url="notafiscal.xhtml" icon="ui-icon ui-icon-pencil"/>
+				<p:menuitem value="Listagem" url="listanotas.xhtml" icon="ui-icon ui-icon-search"/>
+			</p:submenu>
+			<p:menuitem value="Sair" action="#{loginBean.logout}" icon="ui-icon ui-icon-close"/>
+		</p:menubar>
+		</h:form>
 		<ui:insert name="corpo"></ui:insert>
 	</div>
 	

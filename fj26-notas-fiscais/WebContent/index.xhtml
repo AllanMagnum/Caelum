@@ -9,7 +9,11 @@
 
 <h:body>
 	<h:form>
-	<h:commandLink action="/produto.xhtml">Produto</h:commandLink>
+	<h:panelGrid columns="3">
+		<h:commandLink action="produto?faces-redirect=true">Produto</h:commandLink>
+		<h:commandLink action="notafiscal?faces-redirect=true">Cadastrar Notas Fiscais</h:commandLink>
+		<h:commandLink action="listanotas?faces-redirect=true">Listar Notas Fiscais</h:commandLink>
+	</h:panelGrid>
 	</h:form>
 </h:body>
 

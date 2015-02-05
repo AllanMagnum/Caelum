@@ -3,6 +3,7 @@ package br.com.caelum.nostasfiscais.mb;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Named;
 
 import br.com.caelum.notasfiscais.modelo.Usuario;
@@ -16,7 +17,7 @@ public class UsuarioLogadoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	
-	public void logar(Usuario usuario){
+	public void logar(@Observes Usuario usuario){
 		this.usuario = usuario;
 	}
 	
